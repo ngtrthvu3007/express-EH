@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import { defaultErrorHandler } from "./middlewares/defaultErrorHandler.js";
 import { databaseConnection } from "./services/database.services.js";
 import userRouter from "./routers/user.routes.js";
@@ -10,6 +11,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 databaseConnection();
+app.use(cors());
 app.use(express.json());
 
 app.use("/user", userRouter);
